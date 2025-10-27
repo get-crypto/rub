@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Dash Core developers
+// Copyright (c) 2021 The Rub Core developers
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 package blschia
 
-// #cgo LDFLAGS: -ldashbls -lrelic_s -lmimalloc-secure -lgmp
+// #cgo LDFLAGS: -lrubbls -lrelic_s -lmimalloc-secure -lgmp
 // #cgo CXXFLAGS: -std=c++14
 // #include "blschia.h"
 // #include <string.h>

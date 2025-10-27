@@ -1,9 +1,9 @@
-# Dash Core Development Guide
+# Rub Core Development Guide
 
 ## Overview
 
-Dash Core is the reference implementation for Dash, a cryptocurrency. It builds on top of Bitcoin Core, a codebase that
-is primarily written in C++20 (requiring at least Clang 16 or GCC 11.1). Dash Core uses the GNU Autotools build system.
+Rub Core is the reference implementation for Rub, a cryptocurrency. It builds on top of Bitcoin Core, a codebase that
+is primarily written in C++20 (requiring at least Clang 16 or GCC 11.1). Rub Core uses the GNU Autotools build system.
 
 ## Directory Structure
 
@@ -12,7 +12,7 @@ is primarily written in C++20 (requiring at least Clang 16 or GCC 11.1). Dash Co
   - `src/fuzz/` - Fuzzing harnesses
   - `src/index/` - Optional indexes
   - `src/interfaces/` - Interfaces for codebase isolation and inter-process communication
-  - `src/qt/` - Implementation of Dash Qt, the GUI (uses Qt 5)
+  - `src/qt/` - Implementation of Rub Qt, the GUI (uses Qt 5)
   - `src/rpc/` - JSON-RPC server and endpoints
   - `src/util/` - Utility functions
   - `src/wallet/` - Wallet implementation (uses Berkeley DB and SQLite)
@@ -20,7 +20,7 @@ is primarily written in C++20 (requiring at least Clang 16 or GCC 11.1). Dash Co
 - **Unit Tests**
   - `src/test/`, `src/wallet/test/` - C++20 unit tests (uses `Boost::Test`)
   - `src/qt/test/` - C++20 unit tests for GUI implementation (uses Qt 5)
-- **Functional Tests**: `test/functional/` - Python tests (minimum version in `.python-version`) dependent on `dashd` and `dash-node`
+- **Functional Tests**: `test/functional/` - Python tests (minimum version in `.python-version`) dependent on `rubd` and `rub-node`
 
 ### Directories to Exclude
 
@@ -28,7 +28,7 @@ is primarily written in C++20 (requiring at least Clang 16 or GCC 11.1). Dash Co
 - `guix-build*` - Build system files
 - `releases` - Release artifacts
 - Vendored dependencies:
-  - `src/{crc32c,dashbls,gsl,immer,leveldb,minisketch,secp256k1,univalue}`
+  - `src/{crc32c,rubbls,gsl,immer,leveldb,minisketch,secp256k1,univalue}`
   - `src/crypto/{ctaes,x11}`
 
 **Unless specifically prompted**, avoid:
@@ -74,10 +74,10 @@ make -j"$(( $(nproc) - 1 ))"
 make check
 
 # Run specific test (e.g. getarg_tests)
-./src/test/test_dash --run_test=getarg_tests
+./src/test/test_rub --run_test=getarg_tests
 
 # Debug unit tests
-gdb ./src/test/test_dash
+gdb ./src/test/test_rub
 ```
 
 ### Functional Tests
@@ -112,10 +112,10 @@ test/lint/lint-circular-dependencies.py
 
 ## High-Level Architecture
 
-Dash Core extends Bitcoin Core through composition, using a layered architecture:
+Rub Core extends Bitcoin Core through composition, using a layered architecture:
 
 ```
-Dash Core Components
+Rub Core Components
 ├── Bitcoin Core Foundation (Blockchain, consensus, networking)
 ├── Masternodes (Infrastructure)
 │   ├── LLMQ (Quorum infrastructure)
@@ -156,14 +156,14 @@ Dash Core Components
 - **Efficient Updates**: Differential updates for masternode lists
 - **Credit Pool Management**: Platform integration support
 
-#### Dash-Specific Databases
+#### Rub-Specific Databases
 
-- **CFlatDB**: A Dash-specific flat file database format used for persistent storage
+- **CFlatDB**: A Rub-specific flat file database format used for persistent storage
   - `MasternodeMetaStore`: Masternode metadata persistence
   - `GovernanceStore`: Governance object storage
   - `SporkStore`: Spork state persistence
   - `NetFulfilledRequestStore`: Network request tracking
-- **CDBWrapper**: Bitcoin Core database wrapper extended for Dash-specific data
+- **CDBWrapper**: Bitcoin Core database wrapper extended for Rub-specific data
   - `CDKGSessionManager`: LLMQ DKG session persistence
   - `CEvoDb`: Specialized database for Evolution/deterministic masternode data
   - `CInstantSendDb`: InstantSend lock persistence
@@ -174,8 +174,8 @@ Dash Core Components
 
 #### Initialization Flow
 1. **Basic Setup**: Core Bitcoin initialization
-2. **Parameter Interaction**: Dash-specific configuration validation
-3. **Interface Setup**: Dash manager instantiation in NodeContext
+2. **Parameter Interaction**: Rub-specific configuration validation
+3. **Interface Setup**: Rub manager instantiation in NodeContext
 4. **Main Initialization**: EvoDb, masternode system, LLMQ, governance startup
 
 #### Consensus Integration
@@ -194,7 +194,7 @@ Dash Core Components
 - **NodeContext**: Central dependency injection container
 - **LLMQContext**: LLMQ-specific context and state management
 - **ValidationInterface**: Event distribution for block/transaction processing
-- **ChainstateManager**: Enhanced with Dash-specific validation
+- **ChainstateManager**: Enhanced with Rub-specific validation
 - **Chainstate Initialization**: Separated into `src/node/chainstate.*`
 - **Special Transaction Serialization**: Payload serialization routines (`src/evo/specialtx.h`)
 - **BLS Integration**: Cryptographic foundation for advanced features
@@ -206,11 +206,11 @@ Dash Core Components
 # Clean build
 make clean
 
-# Run dashd with debug logging
-./src/dashd -debug=all -printtoconsole
+# Run rubd with debug logging
+./src/rubd -debug=all -printtoconsole
 
-# Run functional test with custom dashd
-test/functional/test_runner.py --dashd=/path/to/dashd
+# Run functional test with custom rubd
+test/functional/test_runner.py --rubd=/path/to/rubd
 
 # Generate compile_commands.json for IDEs
 bear -- make -j"$(( $(nproc) - 1 ))"
@@ -218,15 +218,15 @@ bear -- make -j"$(( $(nproc) - 1 ))"
 
 ### Debugging
 ```bash
-# Debug dashd
-gdb ./src/dashd
+# Debug rubd
+gdb ./src/rubd
 
 # Profile performance
 test/functional/test_runner.py --perf
 perf report -i /path/to/datadir/test.perf.data --stdio | c++filt
 
 # Memory debugging
-valgrind --leak-check=full ./src/dashd
+valgrind --leak-check=full ./src/rubd
 ```
 
 ### GitHub CI Debugging with `gh` CLI
@@ -239,13 +239,13 @@ gh pr checks <PR_NUMBER> --json name,state,link,description
 gh pr checks <PR_NUMBER> --json name,state,link --jq '.[] | select(.state == "FAILURE" or .state == "PENDING")'
 
 # View logs from a specific CI job
-gh api repos/dashpay/dash/actions/jobs/<JOB_ID>/logs
+gh api repos/rubpay/rub/actions/jobs/<JOB_ID>/logs
 
 # Filter failed jobs and steps from a run
 gh run view <RUN_ID> --json jobs --jq '.jobs[] | select(.conclusion == "failure") | {name, conclusion}'
 
 # Example: Get lint failure logs for PR 6691
-# gh api repos/dashpay/dash/actions/jobs/46274126203/logs
+# gh api repos/rubpay/rub/actions/jobs/46274126203/logs
 ```
 
 ## Branch Structure
@@ -261,5 +261,5 @@ gh run view <RUN_ID> --json jobs --jq '.jobs[] | select(.conclusion == "failure"
 - Special transactions use payload extensions - see `src/evo/specialtx.h`
 - Masternode lists use immutable data structures (Immer library) for thread safety
 - LLMQ quorums have different configurations for different purposes
-- Dash uses `unordered_lru_cache` for efficient caching with LRU eviction
-- The codebase extensively uses Dash-specific data structures for performance
+- Rub uses `unordered_lru_cache` for efficient caching with LRU eviction
+- The codebase extensively uses Rub-specific data structures for performance

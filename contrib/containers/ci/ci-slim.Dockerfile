@@ -79,12 +79,12 @@ RUN set -ex; \
     vulture==2.3
 
 # Install packages relied on by tests
-ARG DASH_HASH_VERSION=1.4.0
+ARG RUB_HASH_VERSION=1.4.0
 RUN set -ex; \
     cd /tmp; \
-    git clone --depth 1 --no-tags --branch=${DASH_HASH_VERSION} https://github.com/dashpay/dash_hash; \
-    cd dash_hash && pip3 install -r requirements.txt .; \
-    cd .. && rm -rf dash_hash
+    git clone --depth 1 --no-tags --branch=${RUB_HASH_VERSION} https://github.com/rubpay/rub_hash; \
+    cd rub_hash && pip3 install -r requirements.txt .; \
+    cd .. && rm -rf rub_hash
 
 ARG SHELLCHECK_VERSION=v0.8.0
 RUN set -ex; \
@@ -106,13 +106,13 @@ RUN set -ex; \
 ARG USER_ID=1000 \
     GROUP_ID=1000
 RUN set -ex; \
-    groupmod -g ${GROUP_ID} -n dash ubuntu; \
-    usermod -u ${USER_ID} -md /home/dash -l dash ubuntu; \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash; \
-    mkdir -p /src/dash && \
+    groupmod -g ${GROUP_ID} -n rub ubuntu; \
+    usermod -u ${USER_ID} -md /home/rub -l rub ubuntu; \
+    chown ${USER_ID}:${GROUP_ID} -R /home/rub; \
+    mkdir -p /src/rub && \
     chown ${USER_ID}:${GROUP_ID} /src && \
     chown ${USER_ID}:${GROUP_ID} -R /src
 
-WORKDIR /src/dash
+WORKDIR /src/rub
 
-USER dash
+USER rub

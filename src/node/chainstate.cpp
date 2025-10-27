@@ -88,7 +88,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     pblocktree.reset();
     pblocktree.reset(new CBlockTreeDB(nBlockTreeDBCache, block_tree_db_in_memory, fReset));
 
-    DashChainstateSetup(chainman, govman, mn_metaman, mn_sync, sporkman, mn_activeman, chain_helper, cpoolman,
+    RubChainstateSetup(chainman, govman, mn_metaman, mn_sync, sporkman, mn_activeman, chain_helper, cpoolman,
                         dmnman, evodb, mnhf_manager, llmq_ctx, mempool, fReset, fReindexChainState,
                         consensus_params);
 
@@ -111,7 +111,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     }
 
     // TODO: Remove this when pruning is fixed.
-    // See https://github.com/dashpay/dash/pull/1817 and https://github.com/dashpay/dash/pull/1743
+    // See https://github.com/rubpay/rub/pull/1817 and https://github.com/rubpay/rub/pull/1743
     if (is_governance_enabled && !is_txindex_enabled && network_id != CBaseChainParams::REGTEST) {
         return ChainstateLoadingError::ERROR_TXINDEX_DISABLED_WHEN_GOV_ENABLED;
     }
@@ -216,7 +216,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     return std::nullopt;
 }
 
-void DashChainstateSetup(ChainstateManager& chainman,
+void RubChainstateSetup(ChainstateManager& chainman,
                          CGovernanceManager& govman,
                          CMasternodeMetaMan& mn_metaman,
                          CMasternodeSync& mn_sync,
@@ -257,7 +257,7 @@ void DashChainstateSetup(ChainstateManager& chainman,
                                                        *(llmq_ctx->qman));
 }
 
-void DashChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
+void RubChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
                               std::unique_ptr<CCreditPoolManager>& cpoolman,
                               std::unique_ptr<CDeterministicMNManager>& dmnman,
                               std::unique_ptr<CMNHFManager>& mnhf_manager,

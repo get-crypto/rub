@@ -66,7 +66,7 @@ struct ChainTxData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Dash system.
+ * Rub system.
  */
 class CChainParams
 {

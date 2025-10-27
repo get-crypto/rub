@@ -3,12 +3,12 @@ Rub Core staging tree
 
 | `master` | `develop` |
 | -------- | --------- |
-| [![Build Status](https://github.com/dashpay/dash/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/dashpay/dash/tree/master) | [![Build Status](https://github.com/dashpay/dash/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/dashpay/dash/tree/develop) |
+| [![Build Status](https://github.com/rubpay/rub/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/rubpay/rub/tree/master) | [![Build Status](https://github.com/rubpay/rub/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/rubpay/rub/tree/develop) |
 
-https://www.dash.org
+https://www.rub.org
 
-For an immediately usable, binary version of the Dash Core software, see
-https://www.dash.org/downloads/.
+For an immediately usable, binary version of the Rub Core software, see
+https://www.rub.org/downloads/.
 
 Rub Core connects to the Rub peer-to-peer network to download and fully
 validate blocks and transactions. It also includes a wallet and graphical user
@@ -38,8 +38,8 @@ Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is normally done in separate branches.
-[Tags](https://github.com/dashpay/dash/tags) are created to indicate new official,
-stable release versions of Dash Core.
+[Tags](https://github.com/rubpay/rub/tags) are created to indicate new official,
+stable release versions of Rub Core.
 
 The `develop` branch is regularly built (see doc/build-*.md for instructions) and tested, but is not guaranteed to be
 completely stable.
@@ -93,7 +93,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Dash Core's Transifex page](https://explore.transifex.com/dash/dash/).
+[Rub Core's Transifex page](https://explore.transifex.com/rub/rub/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.

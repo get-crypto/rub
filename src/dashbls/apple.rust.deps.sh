@@ -311,7 +311,7 @@ build_bls_arch() {
     do
         clang -I"../contrib/relic/include" \
           -I"../../depends/relic/include" \
-          -I"../../include/dashbls" \
+          -I"../../include/rubbls" \
           -I"../relic-${PFX}/depends/relic/include" \
           -I"../../src/" \
           -I"../gmplib-${PFX}/include" \

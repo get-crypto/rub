@@ -80,8 +80,8 @@
 
 using node::BlockAssembler;
 using node::CalculateCacheSizes;
-using node::DashChainstateSetup;
-using node::DashChainstateSetupClose;
+using node::RubChainstateSetup;
+using node::RubChainstateSetupClose;
 using node::DEFAULT_ADDRESSINDEX;
 using node::DEFAULT_SPENTINDEX;
 using node::DEFAULT_TIMESTAMPINDEX;
@@ -123,21 +123,21 @@ std::ostream& operator<<(std::ostream& os, const uint256& num)
     return os;
 }
 
-void DashChainstateSetup(ChainstateManager& chainman,
+void RubChainstateSetup(ChainstateManager& chainman,
                          NodeContext& node,
                          bool fReset,
                          bool fReindexChainState,
                          const Consensus::Params& consensus_params)
 {
-    DashChainstateSetup(chainman, *Assert(node.govman.get()), *Assert(node.mn_metaman.get()), *Assert(node.mn_sync.get()),
+    RubChainstateSetup(chainman, *Assert(node.govman.get()), *Assert(node.mn_metaman.get()), *Assert(node.mn_sync.get()),
                         *Assert(node.sporkman.get()), node.mn_activeman, node.chain_helper, node.cpoolman, node.dmnman,
                         node.evodb, node.mnhf_manager, node.llmq_ctx, Assert(node.mempool.get()), fReset, fReindexChainState,
                         consensus_params);
 }
 
-void DashChainstateSetupClose(NodeContext& node)
+void RubChainstateSetupClose(NodeContext& node)
 {
-    DashChainstateSetupClose(node.chain_helper, node.cpoolman, node.dmnman, node.mnhf_manager, node.llmq_ctx,
+    RubChainstateSetupClose(node.chain_helper, node.cpoolman, node.dmnman, node.mnhf_manager, node.llmq_ctx,
                              Assert(node.mempool.get()));
 }
 
@@ -400,9 +400,9 @@ TestingSetup::~TestingSetup()
         m_node.connman->Stop();
     }
 
-    // DashChainstateSetup() is called by LoadChainstate() internally but
+    // RubChainstateSetup() is called by LoadChainstate() internally but
     // winding them down is our responsibility
-    DashChainstateSetupClose(m_node);
+    RubChainstateSetupClose(m_node);
 }
 
 TestChain100Setup::TestChain100Setup(const std::string& chain_name, const std::vector<const char*>& extra_args)

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rub Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -514,13 +514,13 @@ static RPCHelpMan masternodelist_helper(bool is_composite)
         "  json           - Print info in JSON format (can be additionally filtered, partial match)\n"
         "  lastpaidblock  - Print the last block height a node was paid on the network\n"
         "  lastpaidtime   - Print the last time a node was paid on the network\n"
-        "  owneraddress   - Print the masternode owner Dash address\n"
-        "  payee          - Print the masternode payout Dash address (can be additionally filtered,\n"
+        "  owneraddress   - Print the masternode owner Rub address\n"
+        "  payee          - Print the masternode payout Rub address (can be additionally filtered,\n"
         "                   partial match)\n"
         "  pubKeyOperator - Print the masternode operator public key\n"
         "  status         - Print masternode status: ENABLED / POSE_BANNED\n"
         "                   (can be additionally filtered, partial match)\n"
-        "  votingaddress  - Print the masternode voting Dash address\n",
+        "  votingaddress  - Print the masternode voting Rub address\n",
         {
             {"mode", RPCArg::Type::STR, RPCArg::DefaultHint{"json"}, "The mode to run list in"},
             {"filter", RPCArg::Type::STR, RPCArg::Default{""}, "Filter results. Partial match by outpoint by default in all modes, additional matches in some modes are also available"},
@@ -720,7 +720,7 @@ static RPCHelpMan masternodelist_composite()
 Span<const CRPCCommand> GetWalletMasternodeRPCCommands()
 {
     static const CRPCCommand commands[]{
-        {"dash", &masternode_outputs},
+        {"rub", &masternode_outputs},
     };
     return commands;
 }
@@ -729,14 +729,14 @@ Span<const CRPCCommand> GetWalletMasternodeRPCCommands()
 void RegisterMasternodeRPCCommands(CRPCTable &t)
 {
     static const CRPCCommand commands[]{
-        {"dash", &masternode_help},
-        {"dash", &masternodelist_composite},
-        {"dash", &masternodelist},
-        {"dash", &masternode_connect},
-        {"dash", &masternode_count},
-        {"dash", &masternode_status},
-        {"dash", &masternode_payments},
-        {"dash", &masternode_winners},
+        {"rub", &masternode_help},
+        {"rub", &masternodelist_composite},
+        {"rub", &masternodelist},
+        {"rub", &masternode_connect},
+        {"rub", &masternode_count},
+        {"rub", &masternode_status},
+        {"rub", &masternode_payments},
+        {"rub", &masternode_winners},
     };
     for (const auto& command : commands) {
         t.appendCommand(command.name, &command);

@@ -54,7 +54,7 @@ class Loader;
 } // namespace CoinJoin
 struct BlockTip;
 
-//! Interface for the src/evo part of a dash node (dashd process).
+//! Interface for the src/evo part of a rub node (rubd process).
 class EVO
 {
 public:
@@ -63,7 +63,7 @@ public:
     virtual void setContext(node::NodeContext* context) {}
 };
 
-//! Interface for the src/governance part of a dash node (dashd process).
+//! Interface for the src/governance part of a rub node (rubd process).
 class GOV
 {
 public:
@@ -92,7 +92,7 @@ public:
     virtual void setContext(node::NodeContext* context) {}
 };
 
-//! Interface for the src/llmq part of a dash node (dashd process).
+//! Interface for the src/llmq part of a rub node (rubd process).
 class LLMQ
 {
 public:
@@ -101,7 +101,7 @@ public:
     virtual void setContext(node::NodeContext* context) {}
 };
 
-//! Interface for the src/masternode part of a dash node (dashd process).
+//! Interface for the src/masternode part of a rub node (rubd process).
 namespace Masternode
 {
 class Sync
@@ -157,7 +157,7 @@ struct BlockAndHeaderTipInfo
     double verification_progress;
 };
 
-//! Top-level interface for a dash node (dashd process).
+//! Top-level interface for a rub node (rubd process).
 class Node
 {
 public:

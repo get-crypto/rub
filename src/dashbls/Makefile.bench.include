@@ -1,9 +1,9 @@
 # Copyright (c) 2021 The PIVX developers
-# Copyright (c) 2022 The Dash Core developers
+# Copyright (c) 2022 The Rub Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING.MIT or http://www.opensource.org/licenses/mit-license.php.
 
-DASHBLS_RUNBENCH = runbench
+RUBBLS_RUNBENCH = runbench
 
 runbench_SOURCES = \
 	src/test-bench.cpp \
@@ -11,12 +11,12 @@ runbench_SOURCES = \
 
 runbench_SOURCES += \
 	$(RELIC_H) \
-	$(DASHBLS_H)
+	$(RUBBLS_H)
 
-runbench_CPPFLAGS = $(AM_CPPFLAGS) $(DASHBLS_INCLUDES) $(RELIC_INCLUDES)
+runbench_CPPFLAGS = $(AM_CPPFLAGS) $(RUBBLS_INCLUDES) $(RELIC_INCLUDES)
 runbench_CXXFLAGS = $(AM_CXXFLAGS)
 runbench_LDFLAGS  = -static $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
-runbench_LDADD = $(LIBDASHBLS)
+runbench_LDADD = $(LIBRUBBLS)
 
-noinst_PROGRAMS += $(DASHBLS_RUNBENCH)
+noinst_PROGRAMS += $(RUBBLS_RUNBENCH)

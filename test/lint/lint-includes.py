@@ -19,7 +19,7 @@ EXCLUDED_DIRS = ["src/leveldb/",
                  "src/crc32c/",
                  "src/secp256k1/",
                  "src/minisketch/",
-                 "src/dashbls/",
+                 "src/rubbls/",
                  "src/immer/",
                  "src/crypto/x11/"]
 

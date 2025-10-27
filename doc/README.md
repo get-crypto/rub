@@ -1,37 +1,37 @@
-Dash Core
+Rub Core
 ==========
 
-This is the official reference wallet for Dash digital currency and comprises the backbone of the Dash peer-to-peer network. You can [download Dash Core](https://www.dash.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Rub digital currency and comprises the backbone of the Rub peer-to-peer network. You can [download Rub Core](https://www.rub.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Dash Core on your native platform.
+The following are some helpful notes on how to run Rub Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/dash-qt` (GUI) or
-- `bin/dashd` (headless)
+- `bin/rub-qt` (GUI) or
+- `bin/rubd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run dash-qt.exe.
+Unpack the files into a directory, and then run rub-qt.exe.
 
 ### macOS
 
-Drag Dash Core to your applications folder, and then run Dash Core.
+Drag Rub Core to your applications folder, and then run Rub Core.
 
 ### Need Help?
 
-* See the [Dash documentation](https://docs.dash.org)
+* See the [Rub documentation](https://docs.rub.org)
 for help and more information.
-* Ask for help on [Dash Discord](http://staydashy.com)
-* Ask for help on the [Dash Forum](https://dash.org/forum)
+* Ask for help on [Rub Discord](http://stayruby.com)
+* Ask for help on the [Rub Forum](https://rub.org/forum)
 
 Building
 ---------------------
-The following are developer notes on how to build Dash Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Rub Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -43,7 +43,7 @@ The following are developer notes on how to build Dash Core on your native platf
 
 Development
 ---------------------
-The Dash Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Rub Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -60,16 +60,16 @@ The Dash Core repo's [root README](/README.md) contains relevant information on 
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* See the [Dash Developer Documentation](https://dashcore.readme.io/)
+* See the [Rub Developer Documentation](https://rubcore.readme.io/)
   for technical specifications and implementation details.
-* Discuss on the [Dash Forum](https://dash.org/forum), in the Development & Technical Discussion board.
-* Discuss on [Dash Discord](http://staydashy.com)
-* Discuss on [Dash Developers Discord](http://chat.dashdevs.org/)
+* Discuss on the [Rub Forum](https://rub.org/forum), in the Development & Technical Discussion board.
+* Discuss on [Rub Discord](http://stayruby.com)
+* Discuss on [Rub Developers Discord](http://chat.rubdevs.org/)
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
 - [Assumeutxo design](assumeutxo.md)
-- [dash.conf Configuration File](dash-conf.md)
+- [rub.conf Configuration File](rub-conf.md)
 - [CJDNS Support](cjdns.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)

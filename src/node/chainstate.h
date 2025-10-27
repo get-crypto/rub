@@ -107,8 +107,8 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
                                                      std::function<bool()> shutdown_requested = nullptr,
                                                      std::function<void()> coins_error_cb = nullptr);
 
-/** Initialize Dash-specific components during chainstate initialization */
-void DashChainstateSetup(ChainstateManager& chainman,
+/** Initialize Rub-specific components during chainstate initialization */
+void RubChainstateSetup(ChainstateManager& chainman,
                          CGovernanceManager& govman,
                          CMasternodeMetaMan& mn_metaman,
                          CMasternodeSync& mn_sync,
@@ -125,7 +125,7 @@ void DashChainstateSetup(ChainstateManager& chainman,
                          bool fReindexChainState,
                          const Consensus::Params& consensus_params);
 
-void DashChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
+void RubChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
                               std::unique_ptr<CCreditPoolManager>& cpoolman,
                               std::unique_ptr<CDeterministicMNManager>& dmnman,
                               std::unique_ptr<CMNHFManager>& mnhf_manager,

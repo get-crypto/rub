@@ -2,7 +2,7 @@ use std::ffi::c_void;
 use std::fmt::Debug;
 use std::fmt::Formatter;
 
-use bls_dash_sys::{CoreMPLDeriveChildPkUnhardened, G1ElementFree, G1ElementFromBytes, G1ElementGenerator, G1ElementGetFingerprint, G1ElementIsEqual, G1ElementSerialize, G1ElementCopy, G2ElementCopy, G2ElementFree, G2ElementFromBytes, G2ElementIsEqual, G2ElementSerialize, ThresholdPublicKeyRecover, ThresholdSignatureRecover};
+use bls_rub_sys::{CoreMPLDeriveChildPkUnhardened, G1ElementFree, G1ElementFromBytes, G1ElementGenerator, G1ElementGetFingerprint, G1ElementIsEqual, G1ElementSerialize, G1ElementCopy, G2ElementCopy, G2ElementFree, G2ElementFromBytes, G2ElementIsEqual, G2ElementSerialize, ThresholdPublicKeyRecover, ThresholdSignatureRecover};
 #[cfg(feature = "use_serde")]
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
@@ -13,10 +13,10 @@ use crate::{schemes::Scheme, utils::c_err_to_result, BlsError, BasicSchemeMPL};
 pub const G1_ELEMENT_SIZE: usize = 48; // TODO somehow extract it from bls library
 pub const G2_ELEMENT_SIZE: usize = 96; // TODO somehow extract it from bls library
 
-#[cfg(feature = "dash_helpers")]
+#[cfg(feature = "rub_helpers")]
 pub type PublicKey = G1Element;
 
-#[cfg(feature = "dash_helpers")]
+#[cfg(feature = "rub_helpers")]
 pub type Signature = G2Element;
 
 pub struct G1Element {
@@ -50,7 +50,7 @@ impl G1Element {
         G1Element { c_element }
     }
 
-    #[cfg(feature = "dash_helpers")]
+    #[cfg(feature = "rub_helpers")]
     pub fn verify(&self, signature: &G2Element, message: &[u8]) -> bool {
         self.verify_basic(signature, message)
     }

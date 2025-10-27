@@ -8,12 +8,12 @@ import sys
 import tempfile
 
 BINARIES = [
-'src/dashd',
-'src/dash-cli',
-'src/dash-tx',
-'src/dash-wallet',
-#'src/dash-util',
-'src/qt/dash-qt',
+'src/rubd',
+'src/rub-cli',
+'src/rub-tx',
+'src/rub-wallet',
+#'src/rub-util',
+'src/qt/rub-qt',
 ]
 
 # Paths to external utilities.

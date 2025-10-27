@@ -1,8 +1,8 @@
 /**
  * @license
- * lodash <https://lodash.com/>
+ * lorub <https://lorub.com/>
  * Copyright jQuery Foundation and other contributors <https://jquery.org/>
- * Released under MIT license <https://lodash.com/license>
+ * Released under MIT license <https://lorub.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
@@ -21,10 +21,10 @@
   var FUNC_ERROR_TEXT = 'Expected a function';
 
   /** Used to stand-in for `undefined` hash values. */
-  var HASH_UNDEFINED = '__lodash_hash_undefined__';
+  var HASH_UNDEFINED = '__lorub_hash_undefined__';
 
   /** Used as the internal argument placeholder. */
-  var PLACEHOLDER = '__lodash_placeholder__';
+  var PLACEHOLDER = '__lorub_placeholder__';
 
   /** Used to compose bitmasks for function metadata. */
   var BIND_FLAG = 1,
@@ -1242,29 +1242,29 @@
   /*--------------------------------------------------------------------------*/
 
   /**
-   * Create a new pristine `lodash` function using the `context` object.
+   * Create a new pristine `lorub` function using the `context` object.
    *
    * @static
    * @memberOf _
    * @since 1.1.0
    * @category Util
    * @param {Object} [context=root] The context object.
-   * @returns {Function} Returns a new `lodash` function.
+   * @returns {Function} Returns a new `lorub` function.
    * @example
    *
    * _.mixin({ 'foo': _.constant('foo') });
    *
-   * var lodash = _.runInContext();
-   * lodash.mixin({ 'bar': lodash.constant('bar') });
+   * var lorub = _.runInContext();
+   * lorub.mixin({ 'bar': lorub.constant('bar') });
    *
    * _.isFunction(_.foo);
    * // => true
    * _.isFunction(_.bar);
    * // => false
    *
-   * lodash.isFunction(lodash.foo);
+   * lorub.isFunction(lorub.foo);
    * // => false
-   * lodash.isFunction(lodash.bar);
+   * lorub.isFunction(lorub.bar);
    * // => true
    *
    * // Use `context` to stub `Date#getTime` use in `_.now`.
@@ -1322,7 +1322,7 @@
     var objectToString = objectProto.toString;
 
     /** Used to restore the original `_` reference in `_.noConflict`. */
-    var oldDash = root._;
+    var oldRub = root._;
 
     /** Used to detect if a method is native. */
     var reIsNative = RegExp('^' +
@@ -1346,7 +1346,7 @@
     var clearTimeout = function(id) { return context.clearTimeout.call(root, id); },
         setTimeout = function(func, wait) { return context.setTimeout.call(root, func, wait); };
 
-    /* Built-in method references for those with the same name as other `lodash` methods. */
+    /* Built-in method references for those with the same name as other `lorub` methods. */
     var nativeCeil = Math.ceil,
         nativeFloor = Math.floor,
         nativeGetPrototype = Object.getPrototypeOf,
@@ -1403,7 +1403,7 @@
     /*------------------------------------------------------------------------*/
 
     /**
-     * Creates a `lodash` object which wraps `value` to enable implicit method
+     * Creates a `lorub` object which wraps `value` to enable implicit method
      * chain sequences. Methods that operate on and return arrays, collections,
      * and functions can be chained together. Methods that retrieve a single value
      * or may return a primitive value will automatically end the chain sequence
@@ -1427,7 +1427,7 @@
      * Chaining is supported in custom builds as long as the `_#value` method is
      * directly or indirectly included in the build.
      *
-     * In addition to lodash methods, wrappers have `Array` and `String` methods.
+     * In addition to lorub methods, wrappers have `Array` and `String` methods.
      *
      * The wrapper `Array` methods are:
      * `concat`, `join`, `pop`, `push`, `shift`, `sort`, `splice`, and `unshift`
@@ -1496,8 +1496,8 @@
      * @name _
      * @constructor
      * @category Seq
-     * @param {*} value The value to wrap in a `lodash` instance.
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @param {*} value The value to wrap in a `lorub` instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * function square(n) {
@@ -1519,16 +1519,16 @@
      * _.isArray(squares.value());
      * // => true
      */
-    function lodash(value) {
+    function lorub(value) {
       if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
-        if (value instanceof LodashWrapper) {
+        if (value instanceof LorubWrapper) {
           return value;
         }
         if (hasOwnProperty.call(value, '__wrapped__')) {
           return wrapperClone(value);
         }
       }
-      return new LodashWrapper(value);
+      return new LorubWrapper(value);
     }
 
     /**
@@ -1536,18 +1536,18 @@
      *
      * @private
      */
-    function baseLodash() {
+    function baseLorub() {
       // No operation performed.
     }
 
     /**
-     * The base constructor for creating `lodash` wrapper objects.
+     * The base constructor for creating `lorub` wrapper objects.
      *
      * @private
      * @param {*} value The value to wrap.
      * @param {boolean} [chainAll] Enable explicit method chain sequences.
      */
-    function LodashWrapper(value, chainAll) {
+    function LorubWrapper(value, chainAll) {
       this.__wrapped__ = value;
       this.__actions__ = [];
       this.__chain__ = !!chainAll;
@@ -1556,7 +1556,7 @@
     }
 
     /**
-     * By default, the template delimiters used by lodash are like those in
+     * By default, the template delimiters used by lorub are like those in
      * embedded Ruby (ERB). Change the following template settings to use
      * alternative delimiters.
      *
@@ -1564,7 +1564,7 @@
      * @memberOf _
      * @type {Object}
      */
-    lodash.templateSettings = {
+    lorub.templateSettings = {
 
       /**
        * Used to detect `data` property values to be HTML-escaped.
@@ -1607,21 +1607,21 @@
       'imports': {
 
         /**
-         * A reference to the `lodash` function.
+         * A reference to the `lorub` function.
          *
          * @memberOf _.templateSettings.imports
          * @type {Function}
          */
-        '_': lodash
+        '_': lorub
       }
     };
 
-    // Ensure wrappers are instances of `baseLodash`.
-    lodash.prototype = baseLodash.prototype;
-    lodash.prototype.constructor = lodash;
+    // Ensure wrappers are instances of `baseLorub`.
+    lorub.prototype = baseLorub.prototype;
+    lorub.prototype.constructor = lorub;
 
-    LodashWrapper.prototype = baseCreate(baseLodash.prototype);
-    LodashWrapper.prototype.constructor = LodashWrapper;
+    LorubWrapper.prototype = baseCreate(baseLorub.prototype);
+    LorubWrapper.prototype.constructor = LorubWrapper;
 
     /*------------------------------------------------------------------------*/
 
@@ -1739,8 +1739,8 @@
       return result;
     }
 
-    // Ensure `LazyWrapper` is an instance of `baseLodash`.
-    LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+    // Ensure `LazyWrapper` is an instance of `baseLorub`.
+    LazyWrapper.prototype = baseCreate(baseLorub.prototype);
     LazyWrapper.prototype.constructor = LazyWrapper;
 
     /*------------------------------------------------------------------------*/
@@ -4742,7 +4742,7 @@
 
         var length = funcs.length,
             index = length,
-            prereq = LodashWrapper.prototype.thru;
+            prereq = LorubWrapper.prototype.thru;
 
         if (fromRight) {
           funcs.reverse();
@@ -4753,7 +4753,7 @@
             throw new TypeError(FUNC_ERROR_TEXT);
           }
           if (prereq && !wrapper && getFuncName(func) == 'wrapper') {
-            var wrapper = new LodashWrapper([], true);
+            var wrapper = new LorubWrapper([], true);
           }
         }
         index = wrapper ? index : length;
@@ -5515,7 +5515,7 @@
      * @returns {*} Returns the placeholder value.
      */
     function getHolder(func) {
-      var object = hasOwnProperty.call(lodash, 'placeholder') ? lodash : func;
+      var object = hasOwnProperty.call(lorub, 'placeholder') ? lorub : func;
       return object.placeholder;
     }
 
@@ -5531,7 +5531,7 @@
      * @returns {Function} Returns the chosen function or its result.
      */
     function getIteratee() {
-      var result = lodash.iteratee || iteratee;
+      var result = lorub.iteratee || iteratee;
       result = result === iteratee ? baseIteratee : result;
       return arguments.length ? result(arguments[0], arguments[1]) : result;
     }
@@ -5948,7 +5948,7 @@
      */
     function isLaziable(func) {
       var funcName = getFuncName(func),
-          other = lodash[funcName];
+          other = lorub[funcName];
 
       if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
         return false;
@@ -6289,7 +6289,7 @@
       if (wrapper instanceof LazyWrapper) {
         return wrapper.clone();
       }
-      var result = new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__);
+      var result = new LorubWrapper(wrapper.__wrapped__, wrapper.__chain__);
       result.__actions__ = copyArray(wrapper.__actions__);
       result.__index__  = wrapper.__index__;
       result.__values__ = wrapper.__values__;
@@ -8211,7 +8211,7 @@
     /*------------------------------------------------------------------------*/
 
     /**
-     * Creates a `lodash` wrapper instance that wraps `value` with explicit method
+     * Creates a `lorub` wrapper instance that wraps `value` with explicit method
      * chain sequences enabled. The result of such sequences must be unwrapped
      * with `_#value`.
      *
@@ -8220,7 +8220,7 @@
      * @since 1.3.0
      * @category Seq
      * @param {*} value The value to wrap.
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * var users = [
@@ -8240,7 +8240,7 @@
      * // => 'pebbles is 1'
      */
     function chain(value) {
-      var result = lodash(value);
+      var result = lorub(value);
       result.__chain__ = true;
       return result;
     }
@@ -8308,7 +8308,7 @@
      * @since 1.0.0
      * @category Seq
      * @param {...(string|string[])} [paths] The property paths of elements to pick.
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
@@ -8333,7 +8333,7 @@
         'args': [interceptor],
         'thisArg': undefined
       });
-      return new LodashWrapper(value, this.__chain__).thru(function(array) {
+      return new LorubWrapper(value, this.__chain__).thru(function(array) {
         if (length && !array.length) {
           array.push(undefined);
         }
@@ -8342,13 +8342,13 @@
     });
 
     /**
-     * Creates a `lodash` wrapper instance with explicit method chain sequences enabled.
+     * Creates a `lorub` wrapper instance with explicit method chain sequences enabled.
      *
      * @name chain
      * @memberOf _
      * @since 0.1.0
      * @category Seq
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * var users = [
@@ -8379,7 +8379,7 @@
      * @memberOf _
      * @since 3.2.0
      * @category Seq
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * var array = [1, 2];
@@ -8399,7 +8399,7 @@
      * // => [1, 2, 3]
      */
     function wrapperCommit() {
-      return new LodashWrapper(this.value(), this.__chain__);
+      return new LorubWrapper(this.value(), this.__chain__);
     }
 
     /**
@@ -8464,7 +8464,7 @@
      * @since 3.2.0
      * @category Seq
      * @param {*} value The value to plant.
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * function square(n) {
@@ -8484,7 +8484,7 @@
       var result,
           parent = this;
 
-      while (parent instanceof baseLodash) {
+      while (parent instanceof baseLorub) {
         var clone = wrapperClone(parent);
         clone.__index__ = 0;
         clone.__values__ = undefined;
@@ -8509,7 +8509,7 @@
      * @memberOf _
      * @since 0.1.0
      * @category Seq
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lorub` wrapper instance.
      * @example
      *
      * var array = [1, 2, 3];
@@ -8533,7 +8533,7 @@
           'args': [reverse],
           'thisArg': undefined
         });
-        return new LodashWrapper(wrapped, this.__chain__);
+        return new LorubWrapper(wrapped, this.__chain__);
       }
       return this.thru(reverse);
     }
@@ -9021,7 +9021,7 @@
      * `iteratee`. The iteratee is invoked with three arguments:
      * (value, index|key, collection).
      *
-     * Many lodash methods are guarded to work as iteratees for methods like
+     * Many lorub methods are guarded to work as iteratees for methods like
      * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
      *
      * The guarded methods are:
@@ -9154,7 +9154,7 @@
      * value. The iteratee is invoked with four arguments:
      * (accumulator, value, index|key, collection).
      *
-     * Many lodash methods are guarded to work as iteratees for methods like
+     * Many lorub methods are guarded to work as iteratees for methods like
      * `_.reduce`, `_.reduceRight`, and `_.transform`.
      *
      * The guarded methods are:
@@ -13774,8 +13774,8 @@
      * @returns {string} Returns the escaped string.
      * @example
      *
-     * _.escapeRegExp('[lodash](https://lodash.com/)');
-     * // => '\[lodash\]\(https://lodash\.com/\)'
+     * _.escapeRegExp('[lorub](https://lorub.com/)');
+     * // => '\[lorub\]\(https://lorub\.com/\)'
      */
     function escapeRegExp(string) {
       string = toString(string);
@@ -14182,7 +14182,7 @@
      * for easier debugging.
      *
      * For more information on precompiling templates see
-     * [lodash's custom builds documentation](https://lodash.com/custom-builds).
+     * [lorub's custom builds documentation](https://lorub.com/custom-builds).
      *
      * For more information on Chrome extension sandboxes see
      * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
@@ -14201,7 +14201,7 @@
      *  An object to import into the template as free variables.
      * @param {RegExp} [options.interpolate=_.templateSettings.interpolate]
      *  The "interpolate" delimiter.
-     * @param {string} [options.sourceURL='lodash.templateSources[n]']
+     * @param {string} [options.sourceURL='lorub.templateSources[n]']
      *  The sourceURL of the compiled template.
      * @param {string} [options.variable='obj']
      *  The data object variable name.
@@ -14277,7 +14277,7 @@
       // Based on John Resig's `tmpl` implementation
       // (http://ejohn.org/blog/javascript-micro-templating/)
       // and Laura Doktorova's doT.js (https://github.com/olado/doT).
-      var settings = lodash.templateSettings;
+      var settings = lorub.templateSettings;
 
       if (guard && isIterateeCall(string, options, guard)) {
         options = undefined;
@@ -14307,7 +14307,7 @@
       var sourceURL = '//# sourceURL=' +
         ('sourceURL' in options
           ? options.sourceURL
-          : ('lodash.templateSources[' + (++templateCounter) + ']')
+          : ('lorub.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
       string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
@@ -15153,14 +15153,14 @@
      * object to the destination object. If `object` is a function, then methods
      * are added to its prototype as well.
      *
-     * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
+     * **Note:** Use `_.runInContext` to create a pristine `lorub` function to
      * avoid conflicts caused by modifying the original.
      *
      * @static
      * @since 0.1.0
      * @memberOf _
      * @category Util
-     * @param {Function|Object} [object=lodash] The destination object.
+     * @param {Function|Object} [object=lorub] The destination object.
      * @param {Object} source The object of functions to add.
      * @param {Object} [options={}] The options object.
      * @param {boolean} [options.chain=true] Specify whether mixins are chainable.
@@ -15222,20 +15222,20 @@
 
     /**
      * Reverts the `_` variable to its previous value and returns a reference to
-     * the `lodash` function.
+     * the `lorub` function.
      *
      * @static
      * @since 0.1.0
      * @memberOf _
      * @category Util
-     * @returns {Function} Returns the `lodash` function.
+     * @returns {Function} Returns the `lorub` function.
      * @example
      *
-     * var lodash = _.noConflict();
+     * var lorub = _.noConflict();
      */
     function noConflict() {
       if (root._ === this) {
-        root._ = oldDash;
+        root._ = oldRub;
       }
       return this;
     }
@@ -16017,327 +16017,327 @@
     /*------------------------------------------------------------------------*/
 
     // Add methods that return wrapped values in chain sequences.
-    lodash.after = after;
-    lodash.ary = ary;
-    lodash.assign = assign;
-    lodash.assignIn = assignIn;
-    lodash.assignInWith = assignInWith;
-    lodash.assignWith = assignWith;
-    lodash.at = at;
-    lodash.before = before;
-    lodash.bind = bind;
-    lodash.bindAll = bindAll;
-    lodash.bindKey = bindKey;
-    lodash.castArray = castArray;
-    lodash.chain = chain;
-    lodash.chunk = chunk;
-    lodash.compact = compact;
-    lodash.concat = concat;
-    lodash.cond = cond;
-    lodash.conforms = conforms;
-    lodash.constant = constant;
-    lodash.countBy = countBy;
-    lodash.create = create;
-    lodash.curry = curry;
-    lodash.curryRight = curryRight;
-    lodash.debounce = debounce;
-    lodash.defaults = defaults;
-    lodash.defaultsDeep = defaultsDeep;
-    lodash.defer = defer;
-    lodash.delay = delay;
-    lodash.difference = difference;
-    lodash.differenceBy = differenceBy;
-    lodash.differenceWith = differenceWith;
-    lodash.drop = drop;
-    lodash.dropRight = dropRight;
-    lodash.dropRightWhile = dropRightWhile;
-    lodash.dropWhile = dropWhile;
-    lodash.fill = fill;
-    lodash.filter = filter;
-    lodash.flatMap = flatMap;
-    lodash.flatMapDeep = flatMapDeep;
-    lodash.flatMapDepth = flatMapDepth;
-    lodash.flatten = flatten;
-    lodash.flattenDeep = flattenDeep;
-    lodash.flattenDepth = flattenDepth;
-    lodash.flip = flip;
-    lodash.flow = flow;
-    lodash.flowRight = flowRight;
-    lodash.fromPairs = fromPairs;
-    lodash.functions = functions;
-    lodash.functionsIn = functionsIn;
-    lodash.groupBy = groupBy;
-    lodash.initial = initial;
-    lodash.intersection = intersection;
-    lodash.intersectionBy = intersectionBy;
-    lodash.intersectionWith = intersectionWith;
-    lodash.invert = invert;
-    lodash.invertBy = invertBy;
-    lodash.invokeMap = invokeMap;
-    lodash.iteratee = iteratee;
-    lodash.keyBy = keyBy;
-    lodash.keys = keys;
-    lodash.keysIn = keysIn;
-    lodash.map = map;
-    lodash.mapKeys = mapKeys;
-    lodash.mapValues = mapValues;
-    lodash.matches = matches;
-    lodash.matchesProperty = matchesProperty;
-    lodash.memoize = memoize;
-    lodash.merge = merge;
-    lodash.mergeWith = mergeWith;
-    lodash.method = method;
-    lodash.methodOf = methodOf;
-    lodash.mixin = mixin;
-    lodash.negate = negate;
-    lodash.nthArg = nthArg;
-    lodash.omit = omit;
-    lodash.omitBy = omitBy;
-    lodash.once = once;
-    lodash.orderBy = orderBy;
-    lodash.over = over;
-    lodash.overArgs = overArgs;
-    lodash.overEvery = overEvery;
-    lodash.overSome = overSome;
-    lodash.partial = partial;
-    lodash.partialRight = partialRight;
-    lodash.partition = partition;
-    lodash.pick = pick;
-    lodash.pickBy = pickBy;
-    lodash.property = property;
-    lodash.propertyOf = propertyOf;
-    lodash.pull = pull;
-    lodash.pullAll = pullAll;
-    lodash.pullAllBy = pullAllBy;
-    lodash.pullAllWith = pullAllWith;
-    lodash.pullAt = pullAt;
-    lodash.range = range;
-    lodash.rangeRight = rangeRight;
-    lodash.rearg = rearg;
-    lodash.reject = reject;
-    lodash.remove = remove;
-    lodash.rest = rest;
-    lodash.reverse = reverse;
-    lodash.sampleSize = sampleSize;
-    lodash.set = set;
-    lodash.setWith = setWith;
-    lodash.shuffle = shuffle;
-    lodash.slice = slice;
-    lodash.sortBy = sortBy;
-    lodash.sortedUniq = sortedUniq;
-    lodash.sortedUniqBy = sortedUniqBy;
-    lodash.split = split;
-    lodash.spread = spread;
-    lodash.tail = tail;
-    lodash.take = take;
-    lodash.takeRight = takeRight;
-    lodash.takeRightWhile = takeRightWhile;
-    lodash.takeWhile = takeWhile;
-    lodash.tap = tap;
-    lodash.throttle = throttle;
-    lodash.thru = thru;
-    lodash.toArray = toArray;
-    lodash.toPairs = toPairs;
-    lodash.toPairsIn = toPairsIn;
-    lodash.toPath = toPath;
-    lodash.toPlainObject = toPlainObject;
-    lodash.transform = transform;
-    lodash.unary = unary;
-    lodash.union = union;
-    lodash.unionBy = unionBy;
-    lodash.unionWith = unionWith;
-    lodash.uniq = uniq;
-    lodash.uniqBy = uniqBy;
-    lodash.uniqWith = uniqWith;
-    lodash.unset = unset;
-    lodash.unzip = unzip;
-    lodash.unzipWith = unzipWith;
-    lodash.update = update;
-    lodash.updateWith = updateWith;
-    lodash.values = values;
-    lodash.valuesIn = valuesIn;
-    lodash.without = without;
-    lodash.words = words;
-    lodash.wrap = wrap;
-    lodash.xor = xor;
-    lodash.xorBy = xorBy;
-    lodash.xorWith = xorWith;
-    lodash.zip = zip;
-    lodash.zipObject = zipObject;
-    lodash.zipObjectDeep = zipObjectDeep;
-    lodash.zipWith = zipWith;
+    lorub.after = after;
+    lorub.ary = ary;
+    lorub.assign = assign;
+    lorub.assignIn = assignIn;
+    lorub.assignInWith = assignInWith;
+    lorub.assignWith = assignWith;
+    lorub.at = at;
+    lorub.before = before;
+    lorub.bind = bind;
+    lorub.bindAll = bindAll;
+    lorub.bindKey = bindKey;
+    lorub.castArray = castArray;
+    lorub.chain = chain;
+    lorub.chunk = chunk;
+    lorub.compact = compact;
+    lorub.concat = concat;
+    lorub.cond = cond;
+    lorub.conforms = conforms;
+    lorub.constant = constant;
+    lorub.countBy = countBy;
+    lorub.create = create;
+    lorub.curry = curry;
+    lorub.curryRight = curryRight;
+    lorub.debounce = debounce;
+    lorub.defaults = defaults;
+    lorub.defaultsDeep = defaultsDeep;
+    lorub.defer = defer;
+    lorub.delay = delay;
+    lorub.difference = difference;
+    lorub.differenceBy = differenceBy;
+    lorub.differenceWith = differenceWith;
+    lorub.drop = drop;
+    lorub.dropRight = dropRight;
+    lorub.dropRightWhile = dropRightWhile;
+    lorub.dropWhile = dropWhile;
+    lorub.fill = fill;
+    lorub.filter = filter;
+    lorub.flatMap = flatMap;
+    lorub.flatMapDeep = flatMapDeep;
+    lorub.flatMapDepth = flatMapDepth;
+    lorub.flatten = flatten;
+    lorub.flattenDeep = flattenDeep;
+    lorub.flattenDepth = flattenDepth;
+    lorub.flip = flip;
+    lorub.flow = flow;
+    lorub.flowRight = flowRight;
+    lorub.fromPairs = fromPairs;
+    lorub.functions = functions;
+    lorub.functionsIn = functionsIn;
+    lorub.groupBy = groupBy;
+    lorub.initial = initial;
+    lorub.intersection = intersection;
+    lorub.intersectionBy = intersectionBy;
+    lorub.intersectionWith = intersectionWith;
+    lorub.invert = invert;
+    lorub.invertBy = invertBy;
+    lorub.invokeMap = invokeMap;
+    lorub.iteratee = iteratee;
+    lorub.keyBy = keyBy;
+    lorub.keys = keys;
+    lorub.keysIn = keysIn;
+    lorub.map = map;
+    lorub.mapKeys = mapKeys;
+    lorub.mapValues = mapValues;
+    lorub.matches = matches;
+    lorub.matchesProperty = matchesProperty;
+    lorub.memoize = memoize;
+    lorub.merge = merge;
+    lorub.mergeWith = mergeWith;
+    lorub.method = method;
+    lorub.methodOf = methodOf;
+    lorub.mixin = mixin;
+    lorub.negate = negate;
+    lorub.nthArg = nthArg;
+    lorub.omit = omit;
+    lorub.omitBy = omitBy;
+    lorub.once = once;
+    lorub.orderBy = orderBy;
+    lorub.over = over;
+    lorub.overArgs = overArgs;
+    lorub.overEvery = overEvery;
+    lorub.overSome = overSome;
+    lorub.partial = partial;
+    lorub.partialRight = partialRight;
+    lorub.partition = partition;
+    lorub.pick = pick;
+    lorub.pickBy = pickBy;
+    lorub.property = property;
+    lorub.propertyOf = propertyOf;
+    lorub.pull = pull;
+    lorub.pullAll = pullAll;
+    lorub.pullAllBy = pullAllBy;
+    lorub.pullAllWith = pullAllWith;
+    lorub.pullAt = pullAt;
+    lorub.range = range;
+    lorub.rangeRight = rangeRight;
+    lorub.rearg = rearg;
+    lorub.reject = reject;
+    lorub.remove = remove;
+    lorub.rest = rest;
+    lorub.reverse = reverse;
+    lorub.sampleSize = sampleSize;
+    lorub.set = set;
+    lorub.setWith = setWith;
+    lorub.shuffle = shuffle;
+    lorub.slice = slice;
+    lorub.sortBy = sortBy;
+    lorub.sortedUniq = sortedUniq;
+    lorub.sortedUniqBy = sortedUniqBy;
+    lorub.split = split;
+    lorub.spread = spread;
+    lorub.tail = tail;
+    lorub.take = take;
+    lorub.takeRight = takeRight;
+    lorub.takeRightWhile = takeRightWhile;
+    lorub.takeWhile = takeWhile;
+    lorub.tap = tap;
+    lorub.throttle = throttle;
+    lorub.thru = thru;
+    lorub.toArray = toArray;
+    lorub.toPairs = toPairs;
+    lorub.toPairsIn = toPairsIn;
+    lorub.toPath = toPath;
+    lorub.toPlainObject = toPlainObject;
+    lorub.transform = transform;
+    lorub.unary = unary;
+    lorub.union = union;
+    lorub.unionBy = unionBy;
+    lorub.unionWith = unionWith;
+    lorub.uniq = uniq;
+    lorub.uniqBy = uniqBy;
+    lorub.uniqWith = uniqWith;
+    lorub.unset = unset;
+    lorub.unzip = unzip;
+    lorub.unzipWith = unzipWith;
+    lorub.update = update;
+    lorub.updateWith = updateWith;
+    lorub.values = values;
+    lorub.valuesIn = valuesIn;
+    lorub.without = without;
+    lorub.words = words;
+    lorub.wrap = wrap;
+    lorub.xor = xor;
+    lorub.xorBy = xorBy;
+    lorub.xorWith = xorWith;
+    lorub.zip = zip;
+    lorub.zipObject = zipObject;
+    lorub.zipObjectDeep = zipObjectDeep;
+    lorub.zipWith = zipWith;
 
     // Add aliases.
-    lodash.entries = toPairs;
-    lodash.entriesIn = toPairsIn;
-    lodash.extend = assignIn;
-    lodash.extendWith = assignInWith;
+    lorub.entries = toPairs;
+    lorub.entriesIn = toPairsIn;
+    lorub.extend = assignIn;
+    lorub.extendWith = assignInWith;
 
-    // Add methods to `lodash.prototype`.
-    mixin(lodash, lodash);
+    // Add methods to `lorub.prototype`.
+    mixin(lorub, lorub);
 
     /*------------------------------------------------------------------------*/
 
     // Add methods that return unwrapped values in chain sequences.
-    lodash.add = add;
-    lodash.attempt = attempt;
-    lodash.camelCase = camelCase;
-    lodash.capitalize = capitalize;
-    lodash.ceil = ceil;
-    lodash.clamp = clamp;
-    lodash.clone = clone;
-    lodash.cloneDeep = cloneDeep;
-    lodash.cloneDeepWith = cloneDeepWith;
-    lodash.cloneWith = cloneWith;
-    lodash.conformsTo = conformsTo;
-    lodash.deburr = deburr;
-    lodash.defaultTo = defaultTo;
-    lodash.divide = divide;
-    lodash.endsWith = endsWith;
-    lodash.eq = eq;
-    lodash.escape = escape;
-    lodash.escapeRegExp = escapeRegExp;
-    lodash.every = every;
-    lodash.find = find;
-    lodash.findIndex = findIndex;
-    lodash.findKey = findKey;
-    lodash.findLast = findLast;
-    lodash.findLastIndex = findLastIndex;
-    lodash.findLastKey = findLastKey;
-    lodash.floor = floor;
-    lodash.forEach = forEach;
-    lodash.forEachRight = forEachRight;
-    lodash.forIn = forIn;
-    lodash.forInRight = forInRight;
-    lodash.forOwn = forOwn;
-    lodash.forOwnRight = forOwnRight;
-    lodash.get = get;
-    lodash.gt = gt;
-    lodash.gte = gte;
-    lodash.has = has;
-    lodash.hasIn = hasIn;
-    lodash.head = head;
-    lodash.identity = identity;
-    lodash.includes = includes;
-    lodash.indexOf = indexOf;
-    lodash.inRange = inRange;
-    lodash.invoke = invoke;
-    lodash.isArguments = isArguments;
-    lodash.isArray = isArray;
-    lodash.isArrayBuffer = isArrayBuffer;
-    lodash.isArrayLike = isArrayLike;
-    lodash.isArrayLikeObject = isArrayLikeObject;
-    lodash.isBoolean = isBoolean;
-    lodash.isBuffer = isBuffer;
-    lodash.isDate = isDate;
-    lodash.isElement = isElement;
-    lodash.isEmpty = isEmpty;
-    lodash.isEqual = isEqual;
-    lodash.isEqualWith = isEqualWith;
-    lodash.isError = isError;
-    lodash.isFinite = isFinite;
-    lodash.isFunction = isFunction;
-    lodash.isInteger = isInteger;
-    lodash.isLength = isLength;
-    lodash.isMap = isMap;
-    lodash.isMatch = isMatch;
-    lodash.isMatchWith = isMatchWith;
-    lodash.isNaN = isNaN;
-    lodash.isNative = isNative;
-    lodash.isNil = isNil;
-    lodash.isNull = isNull;
-    lodash.isNumber = isNumber;
-    lodash.isObject = isObject;
-    lodash.isObjectLike = isObjectLike;
-    lodash.isPlainObject = isPlainObject;
-    lodash.isRegExp = isRegExp;
-    lodash.isSafeInteger = isSafeInteger;
-    lodash.isSet = isSet;
-    lodash.isString = isString;
-    lodash.isSymbol = isSymbol;
-    lodash.isTypedArray = isTypedArray;
-    lodash.isUndefined = isUndefined;
-    lodash.isWeakMap = isWeakMap;
-    lodash.isWeakSet = isWeakSet;
-    lodash.join = join;
-    lodash.kebabCase = kebabCase;
-    lodash.last = last;
-    lodash.lastIndexOf = lastIndexOf;
-    lodash.lowerCase = lowerCase;
-    lodash.lowerFirst = lowerFirst;
-    lodash.lt = lt;
-    lodash.lte = lte;
-    lodash.max = max;
-    lodash.maxBy = maxBy;
-    lodash.mean = mean;
-    lodash.meanBy = meanBy;
-    lodash.min = min;
-    lodash.minBy = minBy;
-    lodash.stubArray = stubArray;
-    lodash.stubFalse = stubFalse;
-    lodash.stubObject = stubObject;
-    lodash.stubString = stubString;
-    lodash.stubTrue = stubTrue;
-    lodash.multiply = multiply;
-    lodash.nth = nth;
-    lodash.noConflict = noConflict;
-    lodash.noop = noop;
-    lodash.now = now;
-    lodash.pad = pad;
-    lodash.padEnd = padEnd;
-    lodash.padStart = padStart;
-    lodash.parseInt = parseInt;
-    lodash.random = random;
-    lodash.reduce = reduce;
-    lodash.reduceRight = reduceRight;
-    lodash.repeat = repeat;
-    lodash.replace = replace;
-    lodash.result = result;
-    lodash.round = round;
-    lodash.runInContext = runInContext;
-    lodash.sample = sample;
-    lodash.size = size;
-    lodash.snakeCase = snakeCase;
-    lodash.some = some;
-    lodash.sortedIndex = sortedIndex;
-    lodash.sortedIndexBy = sortedIndexBy;
-    lodash.sortedIndexOf = sortedIndexOf;
-    lodash.sortedLastIndex = sortedLastIndex;
-    lodash.sortedLastIndexBy = sortedLastIndexBy;
-    lodash.sortedLastIndexOf = sortedLastIndexOf;
-    lodash.startCase = startCase;
-    lodash.startsWith = startsWith;
-    lodash.subtract = subtract;
-    lodash.sum = sum;
-    lodash.sumBy = sumBy;
-    lodash.template = template;
-    lodash.times = times;
-    lodash.toFinite = toFinite;
-    lodash.toInteger = toInteger;
-    lodash.toLength = toLength;
-    lodash.toLower = toLower;
-    lodash.toNumber = toNumber;
-    lodash.toSafeInteger = toSafeInteger;
-    lodash.toString = toString;
-    lodash.toUpper = toUpper;
-    lodash.trim = trim;
-    lodash.trimEnd = trimEnd;
-    lodash.trimStart = trimStart;
-    lodash.truncate = truncate;
-    lodash.unescape = unescape;
-    lodash.uniqueId = uniqueId;
-    lodash.upperCase = upperCase;
-    lodash.upperFirst = upperFirst;
+    lorub.add = add;
+    lorub.attempt = attempt;
+    lorub.camelCase = camelCase;
+    lorub.capitalize = capitalize;
+    lorub.ceil = ceil;
+    lorub.clamp = clamp;
+    lorub.clone = clone;
+    lorub.cloneDeep = cloneDeep;
+    lorub.cloneDeepWith = cloneDeepWith;
+    lorub.cloneWith = cloneWith;
+    lorub.conformsTo = conformsTo;
+    lorub.deburr = deburr;
+    lorub.defaultTo = defaultTo;
+    lorub.divide = divide;
+    lorub.endsWith = endsWith;
+    lorub.eq = eq;
+    lorub.escape = escape;
+    lorub.escapeRegExp = escapeRegExp;
+    lorub.every = every;
+    lorub.find = find;
+    lorub.findIndex = findIndex;
+    lorub.findKey = findKey;
+    lorub.findLast = findLast;
+    lorub.findLastIndex = findLastIndex;
+    lorub.findLastKey = findLastKey;
+    lorub.floor = floor;
+    lorub.forEach = forEach;
+    lorub.forEachRight = forEachRight;
+    lorub.forIn = forIn;
+    lorub.forInRight = forInRight;
+    lorub.forOwn = forOwn;
+    lorub.forOwnRight = forOwnRight;
+    lorub.get = get;
+    lorub.gt = gt;
+    lorub.gte = gte;
+    lorub.has = has;
+    lorub.hasIn = hasIn;
+    lorub.head = head;
+    lorub.identity = identity;
+    lorub.includes = includes;
+    lorub.indexOf = indexOf;
+    lorub.inRange = inRange;
+    lorub.invoke = invoke;
+    lorub.isArguments = isArguments;
+    lorub.isArray = isArray;
+    lorub.isArrayBuffer = isArrayBuffer;
+    lorub.isArrayLike = isArrayLike;
+    lorub.isArrayLikeObject = isArrayLikeObject;
+    lorub.isBoolean = isBoolean;
+    lorub.isBuffer = isBuffer;
+    lorub.isDate = isDate;
+    lorub.isElement = isElement;
+    lorub.isEmpty = isEmpty;
+    lorub.isEqual = isEqual;
+    lorub.isEqualWith = isEqualWith;
+    lorub.isError = isError;
+    lorub.isFinite = isFinite;
+    lorub.isFunction = isFunction;
+    lorub.isInteger = isInteger;
+    lorub.isLength = isLength;
+    lorub.isMap = isMap;
+    lorub.isMatch = isMatch;
+    lorub.isMatchWith = isMatchWith;
+    lorub.isNaN = isNaN;
+    lorub.isNative = isNative;
+    lorub.isNil = isNil;
+    lorub.isNull = isNull;
+    lorub.isNumber = isNumber;
+    lorub.isObject = isObject;
+    lorub.isObjectLike = isObjectLike;
+    lorub.isPlainObject = isPlainObject;
+    lorub.isRegExp = isRegExp;
+    lorub.isSafeInteger = isSafeInteger;
+    lorub.isSet = isSet;
+    lorub.isString = isString;
+    lorub.isSymbol = isSymbol;
+    lorub.isTypedArray = isTypedArray;
+    lorub.isUndefined = isUndefined;
+    lorub.isWeakMap = isWeakMap;
+    lorub.isWeakSet = isWeakSet;
+    lorub.join = join;
+    lorub.kebabCase = kebabCase;
+    lorub.last = last;
+    lorub.lastIndexOf = lastIndexOf;
+    lorub.lowerCase = lowerCase;
+    lorub.lowerFirst = lowerFirst;
+    lorub.lt = lt;
+    lorub.lte = lte;
+    lorub.max = max;
+    lorub.maxBy = maxBy;
+    lorub.mean = mean;
+    lorub.meanBy = meanBy;
+    lorub.min = min;
+    lorub.minBy = minBy;
+    lorub.stubArray = stubArray;
+    lorub.stubFalse = stubFalse;
+    lorub.stubObject = stubObject;
+    lorub.stubString = stubString;
+    lorub.stubTrue = stubTrue;
+    lorub.multiply = multiply;
+    lorub.nth = nth;
+    lorub.noConflict = noConflict;
+    lorub.noop = noop;
+    lorub.now = now;
+    lorub.pad = pad;
+    lorub.padEnd = padEnd;
+    lorub.padStart = padStart;
+    lorub.parseInt = parseInt;
+    lorub.random = random;
+    lorub.reduce = reduce;
+    lorub.reduceRight = reduceRight;
+    lorub.repeat = repeat;
+    lorub.replace = replace;
+    lorub.result = result;
+    lorub.round = round;
+    lorub.runInContext = runInContext;
+    lorub.sample = sample;
+    lorub.size = size;
+    lorub.snakeCase = snakeCase;
+    lorub.some = some;
+    lorub.sortedIndex = sortedIndex;
+    lorub.sortedIndexBy = sortedIndexBy;
+    lorub.sortedIndexOf = sortedIndexOf;
+    lorub.sortedLastIndex = sortedLastIndex;
+    lorub.sortedLastIndexBy = sortedLastIndexBy;
+    lorub.sortedLastIndexOf = sortedLastIndexOf;
+    lorub.startCase = startCase;
+    lorub.startsWith = startsWith;
+    lorub.subtract = subtract;
+    lorub.sum = sum;
+    lorub.sumBy = sumBy;
+    lorub.template = template;
+    lorub.times = times;
+    lorub.toFinite = toFinite;
+    lorub.toInteger = toInteger;
+    lorub.toLength = toLength;
+    lorub.toLower = toLower;
+    lorub.toNumber = toNumber;
+    lorub.toSafeInteger = toSafeInteger;
+    lorub.toString = toString;
+    lorub.toUpper = toUpper;
+    lorub.trim = trim;
+    lorub.trimEnd = trimEnd;
+    lorub.trimStart = trimStart;
+    lorub.truncate = truncate;
+    lorub.unescape = unescape;
+    lorub.uniqueId = uniqueId;
+    lorub.upperCase = upperCase;
+    lorub.upperFirst = upperFirst;
 
     // Add aliases.
-    lodash.each = forEach;
-    lodash.eachRight = forEachRight;
-    lodash.first = head;
+    lorub.each = forEach;
+    lorub.eachRight = forEachRight;
+    lorub.first = head;
 
-    mixin(lodash, (function() {
+    mixin(lorub, (function() {
       var source = {};
-      baseForOwn(lodash, function(func, methodName) {
-        if (!hasOwnProperty.call(lodash.prototype, methodName)) {
+      baseForOwn(lorub, function(func, methodName) {
+        if (!hasOwnProperty.call(lorub.prototype, methodName)) {
           source[methodName] = func;
         }
       });
@@ -16353,11 +16353,11 @@
      * @memberOf _
      * @type {string}
      */
-    lodash.VERSION = VERSION;
+    lorub.VERSION = VERSION;
 
     // Assign default placeholders.
     arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function(methodName) {
-      lodash[methodName].placeholder = lodash;
+      lorub[methodName].placeholder = lorub;
     });
 
     // Add `LazyWrapper` methods for `_.drop` and `_.take` variants.
@@ -16472,17 +16472,17 @@
       return this.take(MAX_ARRAY_LENGTH);
     };
 
-    // Add `LazyWrapper` methods to `lodash.prototype`.
+    // Add `LazyWrapper` methods to `lorub.prototype`.
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       var checkIteratee = /^(?:filter|find|map|reject)|While$/.test(methodName),
           isTaker = /^(?:head|last)$/.test(methodName),
-          lodashFunc = lodash[isTaker ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName],
+          lorubFunc = lorub[isTaker ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName],
           retUnwrapped = isTaker || /^find/.test(methodName);
 
-      if (!lodashFunc) {
+      if (!lorubFunc) {
         return;
       }
-      lodash.prototype[methodName] = function() {
+      lorub.prototype[methodName] = function() {
         var value = this.__wrapped__,
             args = isTaker ? [1] : arguments,
             isLazy = value instanceof LazyWrapper,
@@ -16490,7 +16490,7 @@
             useLazy = isLazy || isArray(value);
 
         var interceptor = function(value) {
-          var result = lodashFunc.apply(lodash, arrayPush([value], args));
+          var result = lorubFunc.apply(lorub, arrayPush([value], args));
           return (isTaker && chainAll) ? result[0] : result;
         };
 
@@ -16507,7 +16507,7 @@
           value = onlyLazy ? value : new LazyWrapper(this);
           var result = func.apply(value, args);
           result.__actions__.push({ 'func': thru, 'args': [interceptor], 'thisArg': undefined });
-          return new LodashWrapper(result, chainAll);
+          return new LorubWrapper(result, chainAll);
         }
         if (isUnwrapped && onlyLazy) {
           return func.apply(this, args);
@@ -16517,13 +16517,13 @@
       };
     });
 
-    // Add `Array` methods to `lodash.prototype`.
+    // Add `Array` methods to `lorub.prototype`.
     arrayEach(['pop', 'push', 'shift', 'sort', 'splice', 'unshift'], function(methodName) {
       var func = arrayProto[methodName],
           chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
           retUnwrapped = /^(?:pop|shift)$/.test(methodName);
 
-      lodash.prototype[methodName] = function() {
+      lorub.prototype[methodName] = function() {
         var args = arguments;
         if (retUnwrapped && !this.__chain__) {
           var value = this.value();
@@ -16537,12 +16537,12 @@
 
     // Map minified method names to their real names.
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
-      var lodashFunc = lodash[methodName];
-      if (lodashFunc) {
-        var key = (lodashFunc.name + ''),
+      var lorubFunc = lorub[methodName];
+      if (lorubFunc) {
+        var key = (lorubFunc.name + ''),
             names = realNames[key] || (realNames[key] = []);
 
-        names.push({ 'name': methodName, 'func': lodashFunc });
+        names.push({ 'name': methodName, 'func': lorubFunc });
       }
     });
 
@@ -16556,35 +16556,35 @@
     LazyWrapper.prototype.reverse = lazyReverse;
     LazyWrapper.prototype.value = lazyValue;
 
-    // Add chain sequence methods to the `lodash` wrapper.
-    lodash.prototype.at = wrapperAt;
-    lodash.prototype.chain = wrapperChain;
-    lodash.prototype.commit = wrapperCommit;
-    lodash.prototype.next = wrapperNext;
-    lodash.prototype.plant = wrapperPlant;
-    lodash.prototype.reverse = wrapperReverse;
-    lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
+    // Add chain sequence methods to the `lorub` wrapper.
+    lorub.prototype.at = wrapperAt;
+    lorub.prototype.chain = wrapperChain;
+    lorub.prototype.commit = wrapperCommit;
+    lorub.prototype.next = wrapperNext;
+    lorub.prototype.plant = wrapperPlant;
+    lorub.prototype.reverse = wrapperReverse;
+    lorub.prototype.toJSON = lorub.prototype.valueOf = lorub.prototype.value = wrapperValue;
 
     // Add lazy aliases.
-    lodash.prototype.first = lodash.prototype.head;
+    lorub.prototype.first = lorub.prototype.head;
 
     if (iteratorSymbol) {
-      lodash.prototype[iteratorSymbol] = wrapperToIterator;
+      lorub.prototype[iteratorSymbol] = wrapperToIterator;
     }
-    return lodash;
+    return lorub;
   }
 
   /*--------------------------------------------------------------------------*/
 
-  // Export lodash.
+  // Export lorub.
   var _ = runInContext();
 
   // Some AMD build optimizers, like r.js, check for condition patterns like:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-    // Expose Lodash on the global object to prevent errors when Lodash is
+    // Expose Lorub on the global object to prevent errors when Lorub is
     // loaded by a script tag in the presence of an AMD loader.
     // See http://requirejs.org/docs/errors.html#mismatch for more details.
-    // Use `_.noConflict` to remove Lodash from the global object.
+    // Use `_.noConflict` to remove Lorub from the global object.
     root._ = _;
 
     // Define as an anonymous module so, through path mapping, it can be

@@ -1,5 +1,5 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
-# Copyright (c) 2022 The Dash Core developers
+# Copyright (c) 2022 The Rub Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING.MIT or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,12 +28,12 @@ CLEANFILES =
 
 include Makefile.bls.include
 
-CLEANFILES += $(LIBRELIC) $(LIBDASHBLS) $(LIBMIMALLOC)
+CLEANFILES += $(LIBRELIC) $(LIBRUBBLS) $(LIBMIMALLOC)
 
 if USE_TESTS
-CLEANFILES += $(DASHBLS_RUNTEST)
+CLEANFILES += $(RUBBLS_RUNTEST)
 endif
 
 if USE_BENCH
-CLEANFILES += $(DASHBLS_RUNBENCH)
+CLEANFILES += $(RUBBLS_RUNBENCH)
 endif

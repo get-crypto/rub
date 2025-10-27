@@ -1,14 +1,14 @@
 [Desktop Entry]
 Version=1.0
-Name=Dash Core
-Comment=Dash P2P Cryptocurrency
-Comment[de]=Verbinde mit dem Dash peer-to-peer Netzwerk
-Comment[fr]=Dash, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Dash, eşten eşe kriptografik sanal para birimi
-Exec=dash-qt %u
+Name=Rub Core
+Comment=Rub P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Rub peer-to-peer Netzwerk
+Comment[fr]=Rub, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Rub, eşten eşe kriptografik sanal para birimi
+Exec=rub-qt %u
 Terminal=false
 Type=Application
-Icon=dash128
-MimeType=x-scheme-handler/dash;
+Icon=rub128
+MimeType=x-scheme-handler/rub;
 Categories=Office;Finance;P2P;Network;Qt;
-StartupWMClass=Dash-qt
+StartupWMClass=Rub-qt

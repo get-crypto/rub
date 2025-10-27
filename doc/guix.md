@@ -1,3 +1,3 @@
-# Bootstrappable Dash Core Builds
+# Bootstrappable Rub Core Builds
 
 See [contrib/guix/README.md](../contrib/guix/README.md)
