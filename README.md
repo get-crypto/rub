@@ -1,4 +1,4 @@
-Dash Core staging tree
+Rub Core staging tree
 ===========================
 
 | `master` | `develop` |
@@ -16,10 +16,10 @@ interface, which can be optionally built.
 
 Further information about Dash Core is available in the [doc folder](/doc).
 
-What is Dash?
+What is Rub?
 -------------
 
-Dash is a digital currency that enables instant, private payments to anyone,
+Rub is a digital currency that enables instant, private payments to anyone,
 anywhere in the world. Dash uses peer-to-peer technology to operate with
 no central authority: managing transactions and issuing money are carried out
 collectively by the network. Dash Core is the name of the open
@@ -31,7 +31,7 @@ For more information read the original Dash whitepaper.
 License
 -------
 
-Dash Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Rub Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
