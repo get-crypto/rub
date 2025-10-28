@@ -10,23 +10,23 @@ https://www.dash.org
 For an immediately usable, binary version of the Dash Core software, see
 https://www.dash.org/downloads/.
 
-Dash Core connects to the Dash peer-to-peer network to download and fully
+Rub Core connects to the Rub peer-to-peer network to download and fully
 validate blocks and transactions. It also includes a wallet and graphical user
 interface, which can be optionally built.
 
-Further information about Dash Core is available in the [doc folder](/doc).
+Further information about Rub Core is available in the [doc folder](/doc).
 
 What is Rub?
 -------------
 
 Rub is a digital currency that enables instant, private payments to anyone,
-anywhere in the world. Dash uses peer-to-peer technology to operate with
+anywhere in the world. Rub uses peer-to-peer technology to operate with
 no central authority: managing transactions and issuing money are carried out
-collectively by the network. Dash Core is the name of the open
+collectively by the network. Rub Core is the name of the open
 source software which enables the use of this currency.
 
 
-For more information read the original Dash whitepaper.
+For more information read the original Rub whitepaper.
 
 License
 -------
